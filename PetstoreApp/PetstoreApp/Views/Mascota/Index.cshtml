@@ -1,0 +1,53 @@
+﻿@model PetstoreApp.Models.MascotaUI
+@{
+    ViewData["Title"] = "Mascota Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Mascota</h1>
+</div>
+
+@using (Html.BeginForm("Index", "Mascota", FormMethod.Get))
+{
+    <label> Seleccione un Estado de Consulta</label>
+    @Html.DropDownList("MascotaStatus",
+                    Model.SelectStatuses,
+                    "",
+                    new {@id = "ddlStatusMascotas", onchange = "this.form.submit();", @class = "form-control" })
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                NOMBRE MASCOTA
+            </th>
+            <th>
+                ESTADO
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MascotaList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
